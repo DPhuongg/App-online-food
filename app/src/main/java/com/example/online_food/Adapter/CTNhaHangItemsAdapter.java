@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.online_food.Activity.CTNhaHangActivity;
 import com.example.online_food.Data.NhaHang;
 import com.example.online_food.R;
 
@@ -43,13 +44,13 @@ public class CTNhaHangItemsAdapter extends RecyclerView.Adapter<CTNhaHangItemsAd
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                SharedPreferences sharedPreferences = context.getSharedPreferences("UserMaNH", Context.MODE_PRIVATE);
-//                SharedPreferences.Editor editor = sharedPreferences.edit();
-//                editor.putString("MaNhaHang", maNH); // Lưu mã nhà hàng vào SharedPreferences
-//                editor.apply();
-//                Intent intent = new Intent(context, CTNhaHangActivity.class);
-//                intent.putExtra("MaNhaHang", maNH);
-//                context.startActivity(intent);
+                SharedPreferences sharedPreferences = context.getSharedPreferences("UserMaNH", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("MaNhaHang", maNH); // Lưu mã nhà hàng vào SharedPreferences
+                editor.apply();
+                Intent intent = new Intent(context, CTNhaHangActivity.class);
+                intent.putExtra("MaNhaHang", maNH);
+                context.startActivity(intent);
             }
         });
     }
