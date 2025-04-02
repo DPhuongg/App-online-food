@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@color/white"
+        android:elevation="10dp"
+        app:cardCornerRadius="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:id="@+id/layout_QMK"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:elevation="10dp"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/MatKhauHT"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_weight="0"
+                android:background="@drawable/edit_text_background_2"
+                android:drawableStart="@drawable/pass"
+                android:drawableEnd="@drawable/eye"
+                android:drawablePadding="10dp"
+                android:ems="10"
+                android:hint="Mật khẩu hiện tại"
+                android:inputType="textPassword"
+                android:minHeight="48dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:textSize="18dp" />
+
+            <TextView
+                android:id="@+id/tvErrorMKHT"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginStart="20dp"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:visibility="gone"
+                android:fontFamily="@font/oldstandard"
+                android:textColor="@color/maincolor"
+                android:text="Mật khẩu không chính xác" />
+
+            <EditText
+                android:id="@+id/MatKhauMoi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_weight="0"
+                android:background="@drawable/edit_text_background_2"
+                android:drawableStart="@drawable/pass"
+                android:drawableEnd="@drawable/eye"
+                android:drawablePadding="10dp"
+                android:ems="10"
+                android:hint="Mật khẩu mới"
+                android:inputType="textPassword"
+                android:minHeight="48dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:textSize="18dp" />
+
+            <TextView
+                android:id="@+id/tvErrorMKM"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginStart="20dp"
+                android:textSize="16dp"
+                android:visibility="gone"
+                android:textStyle="bold"
+                android:fontFamily="@font/oldstandard"
+                android:textColor="@color/maincolor"
+                android:text="Mật khẩu không chính xác" />
+
+            <EditText
+                android:id="@+id/XacNhanMK"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_weight="0"
+                android:background="@drawable/edit_text_background_2"
+                android:drawableStart="@drawable/pass"
+                android:drawableEnd="@drawable/eye"
+                android:drawablePadding="10dp"
+                android:ems="10"
+                android:hint="Xác nhận mật khẩu"
+                android:inputType="textPassword"
+                android:minHeight="48dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:textSize="18dp" />
+
+            <TextView
+                android:id="@+id/tvErrorXNMK"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginStart="20dp"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:visibility="gone"
+                android:fontFamily="@font/oldstandard"
+                android:textColor="@color/maincolor"
+                android:text="Mật khẩu không chính xác" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnDoiMK"
+                    style="@android:style/Widget.Button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="20dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/background_4"
+                    android:text="Đổi mật khẩu"
+                    android:textColor="@color/white"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnHuy"
+                    style="@android:style/Widget.Button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/edit_text_background_2"
+                    android:text="Hủy"
+                    android:textColor="@color/black"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

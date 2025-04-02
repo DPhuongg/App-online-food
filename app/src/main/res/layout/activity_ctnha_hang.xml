@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/maincolor1"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/linear_head"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/white"
+        android:elevation="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/ivBack_head"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_weight="0"
+            android:padding="8dp"
+            android:layout_gravity="center"
+            android:src="@drawable/left_arrow" />
+
+        <EditText
+            android:id="@+id/etTimKiem_head"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/edit_text_background_1"
+            android:drawableStart="@drawable/search"
+            android:drawablePadding="10dp"
+            android:ems="10"
+            android:hint="Tìm kiếm trong nhà hàng"
+            android:inputType="text"
+            android:minHeight="48dp"
+            android:padding="8dp"
+            tools:ignore="TouchTargetSizeCheck" />
+
+        <ImageView
+            android:id="@+id/ivCart"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_weight="0"
+            android:padding="8dp"
+            android:layout_gravity="center"
+            android:src="@drawable/shopping_cart" />
+    </LinearLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="true"
+        android:id="@+id/layout_ct"
+        android:background="@color/maincolor1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/ivBack"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="16dp"
+                        android:background="@drawable/circle_background"
+                        android:elevation="10dp"
+                        android:padding="5dp"
+                        android:src="@drawable/left_arrow"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/ivAnhNH"
+                        android:layout_width="match_parent"
+                        android:layout_height="180dp"
+                        android:layout_marginTop="4dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/banner_1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="1.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/ivShopping_cart"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="10dp"
+                        android:background="@drawable/circle_background"
+                        android:elevation="10dp"
+                        android:padding="5dp"
+                        android:src="@drawable/shopping_cart"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <TextView
+                    android:id="@+id/tvTen"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="10dp"
+                    android:breakStrategy="simple"
+                    android:maxLines="2"
+                    android:minHeight="48dp"
+                    android:padding="5dp"
+                    android:text=""
+                    android:textColor="@color/black"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvDiaChi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="10dp"
+                    android:breakStrategy="simple"
+                    android:drawableStart="@drawable/location"
+                    android:drawablePadding="10dp"
+                    android:maxLines="2"
+                    android:padding="5dp"
+                    android:text=""
+                    android:textColor="@color/grey"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="15dp"
+                    android:orientation="horizontal">
+
+                    <RatingBar
+                        android:id="@+id/ratingBar"
+                        style="?android:attr/ratingBarStyleSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:numStars="5"
+                        android:layout_marginStart="35dp"
+                        android:layout_marginEnd="30dp"
+                        android:layout_gravity="center"
+                        android:progressTint="@color/color5"
+                        android:rating="5"
+                        android:layout_weight="0"
+                        android:scaleX="1.4"
+                        android:scaleY="1.4"
+                        android:stepSize="0.1" />
+
+                    <TextView
+                        android:id="@+id/tvSoBL"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0"
+                        android:textStyle="bold"
+                        android:textSize="20dp"
+                        android:fontFamily="@font/afacadflux"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center"
+                        android:text="" />
+                </LinearLayout>
+
+                <!--                <TextView-->
+                <!--                    android:id="@+id/tvTTNhaHang"-->
+                <!--                    android:layout_width="wrap_content"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:layout_marginStart="10dp"-->
+                <!--                    android:layout_marginTop="5dp"-->
+                <!--                    android:layout_marginEnd="10dp"-->
+                <!--                    android:layout_weight="1"-->
+                <!--                    android:breakStrategy="simple"-->
+                <!--                    android:drawableStart="@drawable/clock"-->
+                <!--                    android:drawablePadding="10dp"-->
+                <!--                    android:maxLines="2"-->
+                <!--                    android:padding="5dp"-->
+                <!--                    android:text="TextView"-->
+                <!--                    android:textColor="@color/maincolor"-->
+                <!--                    android:textStyle="bold" />-->
+
+                <!--                <LinearLayout-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="match_parent"-->
+                <!--                    android:layout_marginTop="10dp"-->
+                <!--                    android:background="@color/white"-->
+                <!--                    android:orientation="vertical">-->
+
+                <!--                    <TextView-->
+                <!--                        android:id="@+id/textView6"-->
+                <!--                        android:layout_width="match_parent"-->
+                <!--                        android:layout_height="wrap_content"-->
+                <!--                        android:layout_marginStart="10dp"-->
+                <!--                        android:padding="5dp"-->
+                <!--                        android:text="Món phổ biến"-->
+                <!--                        android:textColor="@color/maincolor"-->
+                <!--                        android:textSize="16dp"-->
+                <!--                        android:textStyle="bold" />-->
+
+                <!--                    <androidx.recyclerview.widget.RecyclerView-->
+                <!--                        android:id="@+id/viewMonPB"-->
+                <!--                        android:layout_width="match_parent"-->
+                <!--                        android:layout_height="match_parent"-->
+                <!--                        android:layout_marginStart="15dp" />-->
+
+                <!--                </LinearLayout>-->
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:background="@color/maincolor1"
+                    android:layout_marginTop="20dp"
+                    android:layout_height="wrap_content">
+
+                    <com.google.android.material.tabs.TabLayout
+                        android:id="@+id/tabMenu"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:background="@color/maincolor1"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:tabGravity="fill"
+                        app:tabIndicatorColor="@color/maincolor"
+                        app:tabIndicatorFullWidth="true"
+                        app:tabIndicatorHeight="1.5dp"
+                        app:tabMode="scrollable"
+                        app:tabPaddingEnd="20dp"
+                        app:tabPaddingStart="20dp"
+                        app:tabSelectedTextColor="@color/maincolor"
+                        tools:ignore="SpeakableTextPresentCheck">
+
+                        <com.google.android.material.tabs.TabItem
+                            android:id="@+id/menu1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Tất cả"
+                            android:textAlignment="center" />
+                    </com.google.android.material.tabs.TabLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="70dp"
+                    android:orientation="vertical">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/viewDSMonAn"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@color/white"
+        android:padding="8dp"
+        app:layout_constraintStart_toStartOf="parent">
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
