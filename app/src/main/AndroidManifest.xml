@@ -13,13 +13,16 @@
         android:theme="@style/Theme.Onlinefood"
         tools:targetApi="31">
         <activity
+            android:name=".Activity.GioHangActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.CTMonAnActivity"
+            android:exported="false" />
+        <activity
             android:name=".Activity.DangNhapVaDangKyActivity"
             android:exported="false" />
         <activity
             android:name=".Activity.CTNhaHangActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Activity.LoginActivity"
             android:exported="false" />
         <activity
             android:name=".Activity.TTTaiKhoanActivity"
@@ -32,6 +35,12 @@
             android:exported="false" />
         <activity
             android:name=".Activity.DonHangActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.DatHangActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.DiaChiActivity"
             android:exported="false" />
         <activity
             android:name=".Activity.MainActivity"
