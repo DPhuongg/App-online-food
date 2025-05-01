@@ -1,5 +1,7 @@
 package com.example.online_food.Activity;
 
+import static android.content.ContentValues.TAG;
+
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -14,9 +16,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -51,7 +55,7 @@ public class DatHangActivity extends AppCompatActivity {
     DatHangAdapter datHangAdapter;
     String thoiGianDatHang;
 
-
+    private AppCompatButton btnThanhToan;
 
     FirebaseFirestore firestore = FirebaseFirestore.getInstance();;
 
@@ -76,7 +80,8 @@ public class DatHangActivity extends AppCompatActivity {
         khuyenMai = findViewById(R.id.KhuyenMai);
         thanhTien = findViewById(R.id.ThanhTien);
         tongThanhToan = findViewById(R.id.TongThanhToan);
-        datHang = findViewById(R.id.btnDatDon);
+        btnThanhToan = findViewById(R.id.btnDatDon);
+
         viewDonDat = findViewById(R.id.viewDonDat);
         tenNhaHang = findViewById(R.id.TenNhaHang);
         btnTTKhiNhanHang = findViewById(R.id.btnTTKhiNhanHang);
@@ -214,5 +219,38 @@ public class DatHangActivity extends AppCompatActivity {
         StrictMode.ThreadPolicy policy = new
                 StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
+
+        // QUAN TRỌNG: Nếu ThanhToan là nút để chuyển Activity, bạn cần thêm OnClickListener
+        if (btnThanhToan != null) {
+            btnThanhToan.setOnClickListener(view -> {
+                // Xử lý khi nhấn nút Thanh Toán
+                Log.d(TAG, "Nút Thanh Toán được nhấn.");
+                openPaymentActivity(); // Gọi hàm để mở màn hình thanh toán
+            });
+        } else {
+            Log.e(TAG, "Không tìm thấy Button với ID R.id.ThanhToan trong layout activity_ctnha_hang.xml!");
+            Toast.makeText(this,"Lỗi giao diện (Nút Thanh Toán)", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void openPaymentActivity() {
+        Intent intent = new Intent(this, ThanhToanActivity.class); // Dùng this hoặc view.getContext() đều được
+
+        // --- !!! Lấy dữ liệu thực tế cho đơn hàng ---
+        // Ví dụ: lấy từ giỏ hàng, hoặc một món ăn cụ thể đang được xem,...
+
+        String currentOrderId = "_ORDER_" + System.currentTimeMillis(); // Tạo mã đơn hàng tạm
+
+        // Dữ liệu QR cần phải theo định dạng hệ thống thanh toán của zalopay
+
+        Log.d(TAG, "Chuẩn bị mở ThanhToanActivity với: OrderID=" + currentOrderId + ", amountTotal=" + ThanhTien);
+
+        // --- Đặt dữ liệu vào Intent dùng ĐÚNG KEY đã định nghĩa trong ThanhToanActivity ---
+        intent.putExtra(ThanhToanActivity.EXTRA_ORDER_ID, currentOrderId);
+        double amountTotal = ThanhTien;
+        intent.putExtra(ThanhToanActivity.EXTRA_TOTAL_AMOUNT, amountTotal); // Truyền số lượng
+
+
+        startActivity(intent);
     }
 }
