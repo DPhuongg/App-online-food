@@ -142,7 +142,7 @@ public class NhaHangSearchAdapter extends RecyclerView.Adapter<NhaHangSearchAdap
                     // filteredList.addAll(databackup);
                     map.clear();
                 } else {
-                    String filterPattern = StringUtils.removeDiacritics(constraint.toString().trim());
+                    String filterPattern = StringUtils.normalize(constraint.toString().trim());
                     collectionReference1
                             .whereGreaterThanOrEqualTo("TenMonNonDiacritic", filterPattern)
                             .whereLessThanOrEqualTo("TenMonNonDiacritic", filterPattern + "\uf8ff")

@@ -109,7 +109,7 @@ public class MonAnSearchAdapter extends RecyclerView.Adapter<MonAnSearchAdapter.
                     filteredList.addAll(databackup);
                 } else {
 //                    String filterPattern = constraint.toString().trim();
-                    String filterPattern = StringUtils.removeDiacritics(constraint.toString().trim());
+                    String filterPattern = StringUtils.normalize(constraint.toString().trim());
                     // Lấy danh sách các mã menu theo mã nhà hàng
                     collectionReferenceMN
                             .whereEqualTo("MaNH", maNH) // So sánh mã nhà hàng trong Firestore
@@ -136,6 +136,7 @@ public class MonAnSearchAdapter extends RecyclerView.Adapter<MonAnSearchAdapter.
                                                         lstMonAn.addAll(filteredList);
                                                         notifyDataSetChanged();
                                                     } else {
+                                                        Log.e("Timkiemnhahang123", "Lỗi khi tìm kiếm món ăn", innerTask.getException());
                                                         Toast.makeText(context, "Lỗi khi tìm kiếm món ăn", Toast.LENGTH_SHORT).show();
                                                     }
                                                 });
