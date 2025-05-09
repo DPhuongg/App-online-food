@@ -3,7 +3,9 @@ package com.example.online_food.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
@@ -35,6 +37,9 @@ import java.util.TimerTask;
 import me.relex.circleindicator.CircleIndicator;
 
 public class MainActivity extends AppCompatActivity {
+    //timkiem
+    private EditText etTimKiem;
+
     //banner
     private ViewPager vpBanner;
     private ArrayList<Banner> banners;
@@ -69,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // Tìm id
+        etTimKiem = findViewById(R.id.TimKiemNH);
         vpBanner = findViewById(R.id.vpBanner);
         indicator = findViewById(R.id.indicator);
         viewCate = findViewById(R.id.viewCate);
@@ -114,6 +120,19 @@ public class MainActivity extends AppCompatActivity {
         }, DELAY_MS, PERIOD_MS);
 
 
+        //TimKiem
+        etTimKiem.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    // Tạo Intent để chuyển đến TimkiemNhahangActivity
+                    Intent intent = new Intent(MainActivity.this, TimkiemNhaHang.class);
+                    startActivity(intent);
+                    return true; // Ngăn sự kiện tiếp tục đến các xử lý khác
+                }
+                return false;
+            }
+        });
 
         // CATEGORY
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);

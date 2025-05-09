@@ -98,18 +98,18 @@ public class CTNhaHangActivity extends AppCompatActivity {
         editor.apply();
 
         //sk timkiem
-//        etTimKiem.setOnTouchListener(new View.OnTouchListener() {
-//            @Override
-//            public boolean onTouch(View v, MotionEvent event) {
-//                if (event.getAction() == MotionEvent.ACTION_UP) {
-//                    // Tạo Intent để chuyển đến TimkiemNhahangActivity
-//                    Intent intent = new Intent(CTNhaHangActivity.this, TimKiemMonAn.class);
-//                    startActivity(intent);
-//                    return true; // Ngăn sự kiện tiếp tục đến các xử lý khác
-//                }
-//                return false;
-//            }
-//        });
+        etTimKiem.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    // Tạo Intent để chuyển đến TimkiemNhahangActivity
+                    Intent intent = new Intent(CTNhaHangActivity.this, TimKiemMonAn.class);
+                    startActivity(intent);
+                    return true; // Ngăn sự kiện tiếp tục đến các xử lý khác
+                }
+                return false;
+            }
+        });
 
         // Quay về
         ivBack.setOnClickListener(new View.OnClickListener() {
