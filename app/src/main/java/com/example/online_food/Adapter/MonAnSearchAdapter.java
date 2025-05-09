@@ -18,6 +18,7 @@ import com.bumptech.glide.Glide;
 import com.example.online_food.Activity.CTMonAnActivity;
 import com.example.online_food.Data.MonAn;
 import com.example.online_food.R;
+import com.example.online_food.Util.StringUtils;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -107,7 +108,8 @@ public class MonAnSearchAdapter extends RecyclerView.Adapter<MonAnSearchAdapter.
                 if (constraint == null || constraint.length() == 0) {
                     filteredList.addAll(databackup);
                 } else {
-                    String filterPattern = constraint.toString().trim();
+//                    String filterPattern = constraint.toString().trim();
+                    String filterPattern = StringUtils.removeDiacritics(constraint.toString().trim());
                     // Lấy danh sách các mã menu theo mã nhà hàng
                     collectionReferenceMN
                             .whereEqualTo("MaNH", maNH) // So sánh mã nhà hàng trong Firestore
@@ -121,8 +123,8 @@ public class MonAnSearchAdapter extends RecyclerView.Adapter<MonAnSearchAdapter.
                                         // Tìm món ăn dựa trên mã menu và điều kiện tên món ăn
                                         collectionReference
                                                 .whereEqualTo("MaMenu", maMenu)
-                                                .whereGreaterThanOrEqualTo("TenMon", filterPattern)
-                                                .whereLessThanOrEqualTo("TenMon", filterPattern + "\uf8ff")
+                                                .whereGreaterThanOrEqualTo("TenMonNonDiacritic", filterPattern)
+                                                .whereLessThanOrEqualTo("TenMonNonDiacritic", filterPattern + "\uf8ff")
                                                 .get()
                                                 .addOnCompleteListener(innerTask -> {
                                                     if (innerTask.isSuccessful()) {
