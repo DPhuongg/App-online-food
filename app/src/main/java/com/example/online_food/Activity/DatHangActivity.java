@@ -47,7 +47,7 @@ public class DatHangActivity extends AppCompatActivity {
     TextView diaChi, tongTien, phiVanChuyen, khuyenMai, thanhTien, tongThanhToan, tenNhaHang, vanChuyen;
     Button datHang;
     RecyclerView viewDonDat;
-    RadioButton btnTTKhiNhanHang, btnTTMomo, btnTTVNPay, btnTTZalopay;
+    RadioButton btnTTKhiNhanHang, btnTTMomo, btnTTVietCodeQR, btnTTZalopay;
     LinearLayout layout_diaChi;
     Double TongTien;
     Double ThanhTien = 0.0, phiVC = 0.0, KM = 0.0;
@@ -86,7 +86,7 @@ public class DatHangActivity extends AppCompatActivity {
         tenNhaHang = findViewById(R.id.TenNhaHang);
         btnTTKhiNhanHang = findViewById(R.id.btnTTKhiNhanHang);
         btnTTMomo = findViewById(R.id.btnTTMomo);
-        btnTTVNPay = findViewById(R.id.btnTTVNPay);
+        btnTTVietCodeQR = findViewById(R.id.btnTTVietCodeQR);
         btnTTZalopay = findViewById(R.id.btnTTZalopay);
         layout_diaChi = findViewById(R.id.layout_diaChi);
 
@@ -220,20 +220,59 @@ public class DatHangActivity extends AppCompatActivity {
                 StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
-        // QUAN TRỌNG: Nếu ThanhToan là nút để chuyển Activity, bạn cần thêm OnClickListener
+
+
+        btnTTKhiNhanHang.setOnClickListener(v -> clearAllExcept(btnTTKhiNhanHang));
+        btnTTMomo.setOnClickListener(v -> clearAllExcept(btnTTMomo));
+        btnTTVietCodeQR.setOnClickListener(v -> clearAllExcept(btnTTVietCodeQR));
+        btnTTZalopay.setOnClickListener(v -> clearAllExcept(btnTTZalopay));
+
+
+        // QUAN TRỌNG: ThanhToan là nút để chuyển Activity nên cần thêm OnClickListener
         if (btnThanhToan != null) {
+            // Xử lý khi nhấn nút Thanh Toán
+            Log.d(TAG, "Nút Thanh Toán được nhấn.");
             btnThanhToan.setOnClickListener(view -> {
-                // Xử lý khi nhấn nút Thanh Toán
-                Log.d(TAG, "Nút Thanh Toán được nhấn.");
-                openPaymentActivity(); // Gọi hàm để mở màn hình thanh toán
+                String phuongThuc = "";
+
+                if (btnTTKhiNhanHang.isChecked()) {
+                    phuongThuc = "Phương thức đã chọn: Thanh toán khi nhận hàng";
+                    Log.d(TAG, phuongThuc);
+                    openPaymentWhenReceive();
+                } else if (btnTTMomo.isChecked()) {
+                    phuongThuc = "Phương thức đã chọn: Thanh toán qua ví Momo";
+                    Log.d(TAG, phuongThuc);
+                } else if (btnTTVietCodeQR.isChecked()) {
+                    phuongThuc = "Phương thức đã chọn: Thanh toán qua ví VNPay";
+                    openPaymentQRActivity();
+                    Log.d(TAG, phuongThuc);
+                } else if (btnTTZalopay.isChecked()) {
+                    phuongThuc = "Phương thức đã chọn: Thanh toán qua ví Zalopay";
+                    Log.d(TAG, phuongThuc);
+                    openPaymentAppToAppZaloPay();
+                }
+
+                if (phuongThuc.isEmpty()) {
+                    Toast.makeText(this, "Vui lòng chọn phương thức thanh toán", Toast.LENGTH_SHORT).show();
+                }
             });
+
         } else {
             Log.e(TAG, "Không tìm thấy Button với ID R.id.ThanhToan trong layout activity_ctnha_hang.xml!");
             Toast.makeText(this,"Lỗi giao diện (Nút Thanh Toán)", Toast.LENGTH_SHORT).show();
         }
     }
 
-    private void openPaymentActivity() {
+//    Xử lý logic chọn phương thức thanh toán
+    private void clearAllExcept(RadioButton selected) {
+        RadioButton[] allButtons = {btnTTKhiNhanHang, btnTTMomo, btnTTVietCodeQR, btnTTZalopay};
+        for (RadioButton btn : allButtons) {
+            btn.setChecked(btn == selected);
+        }
+    }
+
+//  Thanh toán qua mã QR
+    private void openPaymentQRActivity() {
         Intent intent = new Intent(this, ThanhToanActivity.class); // Dùng this hoặc view.getContext() đều được
 
         // --- !!! Lấy dữ liệu thực tế cho đơn hàng ---
@@ -252,5 +291,14 @@ public class DatHangActivity extends AppCompatActivity {
 
 
         startActivity(intent);
+    }
+
+//    Thanh toán qua ứng dụng zalopay
+    private void openPaymentAppToAppZaloPay() {
+
+    }
+//    Thanh toán khi nhận hàng
+    private void openPaymentWhenReceive(){
+
     }
 }

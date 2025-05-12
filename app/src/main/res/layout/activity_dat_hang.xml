@@ -488,12 +488,12 @@
                         android:layout_gravity="center"
                         android:layout_marginStart="10dp"
                         android:layout_weight="1"
-                        android:text="Thanh toán qua ví VNPay"
+                        android:text="Thanh toán qua VietCode QR"
                         android:textColor="@color/black"
                         android:textSize="16dp" />
 
                     <RadioButton
-                        android:id="@+id/btnTTVNPay"
+                        android:id="@+id/btnTTVietCodeQR"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:buttonTint="@color/maincolor" />
