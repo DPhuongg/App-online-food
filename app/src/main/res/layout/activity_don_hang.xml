@@ -2,7 +2,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Activity.DonHangActivity">
@@ -11,95 +10,87 @@
         android:id="@+id/tabMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:padding="2dp"
         android:background="@color/white"
-        app:tabMode="scrollable"
-        app:tabIndicatorColor="@color/maincolor"
-        app:tabSelectedTextColor="@color/maincolor"
-        app:tabIndicatorHeight="1.5dp"
-        app:tabIndicatorFullWidth="true"
+        android:padding="2dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:tabGravity="fill"
+        app:tabIndicatorHeight="1.5dp"
+        app:tabIndicatorColor="@color/maincolor"
+        app:tabIndicatorFullWidth="true"
+        app:tabMode="scrollable"
+        app:tabSelectedTextColor="@color/maincolor"
         tools:ignore="SpeakableTextPresentCheck">
 
         <com.google.android.material.tabs.TabItem
             android:id="@+id/menu1"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Chờ xác nhận"
-            android:textAlignment="center">
-        </com.google.android.material.tabs.TabItem>
+            android:textAlignment="center" />
 
         <com.google.android.material.tabs.TabItem
             android:id="@+id/menu3"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Chờ giao hàng"
-            android:textAlignment="center">
-        </com.google.android.material.tabs.TabItem>
+            android:textAlignment="center" />
 
         <com.google.android.material.tabs.TabItem
             android:id="@+id/menu4"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Đã giao"
-            android:textAlignment="center">
-        </com.google.android.material.tabs.TabItem>
+            android:textAlignment="center" />
 
         <com.google.android.material.tabs.TabItem
             android:id="@+id/menu5"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Đã hủy"
-            android:textAlignment="center">
-        </com.google.android.material.tabs.TabItem>
+            android:textAlignment="center" />
 
         <com.google.android.material.tabs.TabItem
             android:id="@+id/menu6"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Đánh giá"
-            android:textAlignment="center">
-        </com.google.android.material.tabs.TabItem>
-
-
+            android:textAlignment="center" />
     </com.google.android.material.tabs.TabLayout>
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:fillViewport="true"
+        app:layout_constraintBottom_toTopOf="@+id/coordinatorLayout3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tabMenu"
-        app:layout_constraintBottom_toTopOf="@id/coordinatorLayout3"
-        android:background="@color/maincolor1"
-        tools:ignore="MissingConstraints">
+        app:layout_constraintTop_toBottomOf="@+id/tabMenu">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:orientation="vertical"
-            tools:ignore="MissingConstraints"
-            >
+            android:orientation="vertical">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/layout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="100dp"
-                >
+                android:layout_marginBottom="100dp"
+                android:layout_height="wrap_content">
 
                 <LinearLayout
-                    android:id="@+id/linearlayout2"
+                    android:id="@+id/linearLayout2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
-                    >
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
                     <LinearLayout
+                        android:id="@+id/viewDH"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="30dp"
@@ -111,8 +102,8 @@
                             android:layout_height="150dp"
                             android:layout_gravity="center"
                             android:padding="15dp"
-                            android:src="@drawable/smartphone">
-                        </ImageView>
+                            android:src="@drawable/smartphone"
+                            tools:ignore="MissingConstraints" />
 
                         <TextView
                             android:id="@+id/tvDH"
@@ -126,13 +117,13 @@
                             android:textColor="@color/grey"
                             android:textSize="16dp"
                             android:textStyle="bold" />
+
                     </LinearLayout>
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/viewDHItem"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                    </androidx.recyclerview.widget.RecyclerView>
+                        android:layout_height="wrap_content" />
                 </LinearLayout>
 
                 <ProgressBar
@@ -144,6 +135,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </LinearLayout>
@@ -162,10 +154,10 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_gravity="bottom"
+            android:background="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:background="@color/white">
+            app:layout_constraintStart_toStartOf="parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -183,12 +175,10 @@
                         android:id="@+id/ivHome"
                         android:layout_width="24dp"
                         android:layout_height="24dp"
-                        android:layout_marginBottom="3dp"
                         android:layout_gravity="center"
                         android:layout_marginTop="10dp"
-                        android:src="@drawable/home"
-                        >
-                    </ImageView>
+                        android:layout_marginBottom="3dp"
+                        android:src="@drawable/home" />
 
                     <TextView
                         android:id="@+id/tvHome"
@@ -199,6 +189,8 @@
                         android:textSize="15dp"
                         android:textStyle="bold"
                         tools:ignore="TextSizeCheck" />
+
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -221,9 +213,9 @@
                         android:id="@+id/tvDonHang"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/maincolor"
                         android:text="Đơn hàng"
                         android:textAlignment="center"
+                        android:textColor="@color/maincolor"
                         android:textSize="15dp"
                         android:textStyle="bold"
                         tools:ignore="TextSizeCheck" />
@@ -287,8 +279,11 @@
                         tools:ignore="TextSizeCheck" />
 
                 </LinearLayout>
+
             </LinearLayout>
+
         </com.google.android.material.bottomnavigation.BottomNavigationView>
+
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
