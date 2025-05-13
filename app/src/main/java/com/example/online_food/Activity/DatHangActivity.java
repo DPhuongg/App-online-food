@@ -1,5 +1,7 @@
 package com.example.online_food.Activity;
 
+import static android.content.ContentValues.TAG;
+
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -35,6 +37,8 @@ import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import org.json.JSONObject;
+
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -49,7 +53,7 @@ public class DatHangActivity extends AppCompatActivity {
     TextView diaChi, tongTien, phiVanChuyen, khuyenMai, thanhTien, tongThanhToan, tenNhaHang, vanChuyen;
     Button datHang;
     RecyclerView viewDonDat;
-    RadioButton btnTTKhiNhanHang, btnTTMomo, btnTTVNPay, btnTTZalopay;
+    RadioButton btnTTKhiNhanHang, btnTTQR, btnTTVNPay, btnTTZalopay;
     LinearLayout layout_diaChi;
     Double TongTien;
     Double ThanhTien = 0.0, phiVC = 0.0, KM = 0.0;
@@ -88,7 +92,7 @@ public class DatHangActivity extends AppCompatActivity {
         viewDonDat = findViewById(R.id.viewDonDat);
         tenNhaHang = findViewById(R.id.TenNhaHang);
         btnTTKhiNhanHang = findViewById(R.id.btnTTKhiNhanHang);
-        btnTTMomo = findViewById(R.id.btnTTMomo);
+        btnTTQR = findViewById(R.id.btnTTQR);
         btnTTVNPay = findViewById(R.id.btnTTVNPay);
         btnTTZalopay = findViewById(R.id.btnTTZalopay);
         layout_diaChi = findViewById(R.id.layout_diaChi);
@@ -98,21 +102,21 @@ public class DatHangActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 btnTTKhiNhanHang.setChecked(true);
-                btnTTMomo.setChecked(false);
+                btnTTQR.setChecked(false);
                 btnTTZalopay.setChecked(false);
                 btnTTVNPay.setChecked(false);
                 ptThanhToan = "Thanh toán khi nhận hàng";
             }
         });
 
-        btnTTMomo.setOnClickListener(new View.OnClickListener() {
+        btnTTQR.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 btnTTKhiNhanHang.setChecked(false);
-                btnTTMomo.setChecked(true);
+                btnTTQR.setChecked(true);
                 btnTTZalopay.setChecked(false);
                 btnTTVNPay.setChecked(false);
-                ptThanhToan = "Thanh toán qua ví Momo";
+                ptThanhToan = "Thanh toán qua mã QR";
             }
         });
 
@@ -120,7 +124,7 @@ public class DatHangActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 btnTTKhiNhanHang.setChecked(false);
-                btnTTMomo.setChecked(false);
+                btnTTQR.setChecked(false);
                 btnTTZalopay.setChecked(false);
                 btnTTVNPay.setChecked(true);
                 ptThanhToan = "Thanh toán qua ví VNPay";
@@ -131,7 +135,7 @@ public class DatHangActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 btnTTKhiNhanHang.setChecked(false);
-                btnTTMomo.setChecked(false);
+                btnTTQR.setChecked(false);
                 btnTTZalopay.setChecked(true);
                 btnTTVNPay.setChecked(false);
                 ptThanhToan = "Thanh toán qua ví Zalopay";
@@ -145,7 +149,6 @@ public class DatHangActivity extends AppCompatActivity {
                 finish();
             }
         });
-
 
 
         // Lấy thông tin
@@ -333,18 +336,11 @@ public class DatHangActivity extends AppCompatActivity {
                                                 .setCancelable(false)
                                                 .show();
                                     }
-                                    else if(ptThanhToan.equals("Thanh toán qua ví Momo")) {
-                                        new AlertDialog.Builder(DatHangActivity.this)
-                                                .setTitle("Thông báo")
-                                                .setMessage("Vui lòng chọn phương thức thanh toán khác!")
-                                                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                                                    @Override
-                                                    public void onClick(DialogInterface dialog, int which) {
-                                                        dialog.dismiss();
-                                                    }
-                                                })
-                                                .setCancelable(false)
-                                                .show();
+                                    else if(ptThanhToan.equals("Thanh toán qua mã QR")) {
+                                        openPaymentQRActivity(
+                                                newMaDH,
+                                                maNH,
+                                                makhDN);
                                     }
 
                                     else {
@@ -360,6 +356,37 @@ public class DatHangActivity extends AppCompatActivity {
         });
 
     }
+
+    //  Thanh toán qua mã QR
+    private void openPaymentQRActivity(String newMaDH, String maNH, String maKH) {
+        Intent intent = new Intent(this, ThanhToanQRActivity.class); // Dùng this hoặc view.getContext() đều được
+
+        // --- !!! Lấy dữ liệu thực tế cho đơn hàng ---
+        // Ví dụ: lấy từ giỏ hàng, hoặc một món ăn cụ thể đang được xem,...
+
+        String currentOrderId = "_ORDER_" + System.currentTimeMillis(); // Tạo mã đơn hàng tạm
+
+        // Dữ liệu QR cần phải theo định dạng hệ thống thanh toán của zalopay
+
+        Log.d(TAG, "Chuẩn bị mở ThanhToanActivity với: OrderID=" + currentOrderId + ", amountTotal=" + ThanhTien);
+
+        // --- Đặt dữ liệu vào Intent dùng ĐÚNG KEY đã định nghĩa trong ThanhToanActivity ---
+        intent.putExtra(ThanhToanQRActivity.EXTRA_ORDER_ID, currentOrderId);
+        double amountTotal = ThanhTien;
+        intent.putExtra(ThanhToanQRActivity.EXTRA_TOTAL_AMOUNT, amountTotal); // Truyền số lượng
+        intent.putExtra(ThanhToanQRActivity.EXTRA_TOTAL_newMaDH, newMaDH);
+        intent.putExtra(ThanhToanQRActivity.EXTRA_TOTAL_MaNH, maNH);
+        intent.putExtra(ThanhToanQRActivity.EXTRA_TOTAL_MaKH, maKH);
+        intent.putExtra(ThanhToanQRActivity.EXTRA_TOTAL_KM, KM);
+        intent.putExtra(ThanhToanQRActivity.EXTRA_TOTAL_phiVC, phiVC);
+        intent.putExtra(ThanhToanQRActivity.EXTRA_TOTAL_ptThanhToan, ptThanhToan);
+        intent.putExtra(ThanhToanQRActivity.EXTRA_TOTAL_TongTien, TongTien);
+        intent.putExtra(ThanhToanQRActivity.EXTRA_TOTAL_ThanhTien, amountTotal);
+        intent.putExtra(ThanhToanQRActivity.EXTRA_TOTAL_thoiGianDatHang, thoiGianDatHang);
+
+        startActivity(intent);
+    }
+
 
     private void themDonHang(String maDon) {
         CollectionReference referenceChiTietGH = firestore.collection("ChiTietGioHang");

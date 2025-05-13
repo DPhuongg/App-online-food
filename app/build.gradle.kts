@@ -82,4 +82,11 @@ dependencies {
     )))
 
     implementation ("org.mindrot:jbcrypt:0.4")
+
+    //  Dành cho thanh toán qua QR
+
+    implementation ("com.google.zxing:core:3.5.1")
+    implementation ("com.journeyapps:zxing-android-embedded:4.3.0")
+    implementation("com.squareup.okhttp3:okhttp:4.11.0")
+    implementation ("com.google.android.material:material:1.12.0")
 }

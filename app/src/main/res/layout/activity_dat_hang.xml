@@ -449,18 +449,18 @@
                         app:srcCompat="@drawable/momo" />
 
                     <TextView
-                        android:id="@+id/TTMomo"
+                        android:id="@+id/TTQR"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginStart="10dp"
                         android:layout_weight="1"
-                        android:text="Thanh toán qua ví Momo"
+                        android:text="Thanh toán qua mã QR"
                         android:textColor="@color/black"
                         android:textSize="16dp" />
 
                     <RadioButton
-                        android:id="@+id/btnTTMomo"
+                        android:id="@+id/btnTTQR"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:buttonTint="@color/maincolor" />
