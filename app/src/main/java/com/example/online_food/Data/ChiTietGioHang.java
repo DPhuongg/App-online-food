@@ -73,4 +73,15 @@ public class ChiTietGioHang {
     public void setSoLuong(int soLuong) {
         SoLuong = soLuong;
     }
+
+    @Override
+    public String toString() {
+        return "ChiTietGioHang{" +
+                "maMon='" + MaMon + '\'' +
+                ", tenMon='" + TenMon + '\'' +
+                ", giaMon=" + GiaMon +
+                ", soLuong=" + SoLuong +
+                ", anh='" + Anh + '\'' +
+                '}';
+    }
 }
