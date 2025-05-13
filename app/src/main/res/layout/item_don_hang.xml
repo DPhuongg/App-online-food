@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@color/white"
+        android:elevation="5dp"
+        app:cardCornerRadius="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/NhaHang"
+                android:layout_width="match_parent"
+                android:layout_marginBottom="10dp"
+                android:drawableStart="@drawable/shop"
+                android:drawablePadding="10dp"
+                android:textSize="16dp"
+                android:breakStrategy="simple"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textStyle="bold"
+                android:layout_height="wrap_content"
+                android:text="" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/anh"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_weight="0"
+                    android:layout_marginEnd="10dp"
+                    android:scaleType="centerCrop" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_weight="0"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/SoLuong"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/afacadflux"
+                        android:text=""
+                        android:layout_weight="0"
+                        android:layout_marginEnd="10dp"
+                        android:layout_gravity="center"
+                        android:textColor="@color/black"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/TenMon"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/afacadflux"
+                        android:text=""
+                        android:breakStrategy="simple"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:layout_weight="1"
+                        android:layout_gravity="center"
+                        android:textColor="@color/black"
+                        android:layout_marginEnd="10dp"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/GiaTien"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/afacadflux"
+                        android:text=""
+                        android:layout_weight="0"
+                        android:layout_marginEnd="10dp"
+                        android:layout_gravity="center"
+                        android:textColor="@color/black"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/TongTien"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/afacadflux"
+                android:textSize="18dp"
+                android:textAlignment="textEnd"
+                android:layout_marginTop="10dp"
+                android:textStyle="bold"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/ctdh"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/afacadflux"
+                android:textSize="16dp"
+                android:textAlignment="center"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:textStyle="bold"
+                android:text="Xem chi tiết đơn hàng" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="5dp"
+                android:gravity="end"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnMuaLai"
+                    style="@android:style/Widget.Button"
+                    android:layout_width="100dp"
+                    android:layout_height="45dp"
+                    android:layout_gravity="end"
+                    android:visibility="gone"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/edit_text_background_2"
+                    android:text="Mua lại"
+                    android:textColor="@color/black"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnDaNhanhang"
+                    style="@android:style/Widget.Button"
+                    android:layout_width="170dp"
+                    android:visibility="gone"
+                    android:layout_height="45dp"
+                    android:layout_gravity="end"
+                    android:background="@drawable/background_button_3"
+                    android:text="Đã nhận được hàng"
+                    android:textColor="@color/maincolor"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>
