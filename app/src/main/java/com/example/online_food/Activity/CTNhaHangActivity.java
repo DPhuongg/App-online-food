@@ -141,33 +141,33 @@ public class CTNhaHangActivity extends AppCompatActivity {
             }
         });
 
-//        // Hiện giỏ hàng
-//        Cart_head.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                if(!isUserLoggedIn()) {
-//                    startActivity(new Intent(CTNhaHangActivity.this, DangNhapVaDangKyActivity.class));
-//                }
-//
-//                else {
-//                    startActivity(new Intent(CTNhaHangActivity.this, GioHangActivity.class));
-//                }
-//            }
-//        });
-//
-//        Shopping_Cart.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if(!isUserLoggedIn()) {
-//                    startActivity(new Intent(CTNhaHangActivity.this, DangNhapVaDangKyActivity.class));
-//                }
-//
-//                else {
-//                    startActivity(new Intent(CTNhaHangActivity.this, GioHangActivity.class));
-//                }
-//            }
-//        });
+        // Hiện giỏ hàng
+        Cart_head.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(!isUserLoggedIn()) {
+                    startActivity(new Intent(CTNhaHangActivity.this, DangNhapVaDangKyActivity.class));
+                }
+
+                else {
+                    startActivity(new Intent(CTNhaHangActivity.this, GioHangActivity.class));
+                }
+            }
+        });
+
+        Shopping_Cart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!isUserLoggedIn()) {
+                    startActivity(new Intent(CTNhaHangActivity.this, DangNhapVaDangKyActivity.class));
+                }
+
+                else {
+                    startActivity(new Intent(CTNhaHangActivity.this, GioHangActivity.class));
+                }
+            }
+        });
 
         // Lấy thông tin nhà hàng
         referenceNH.whereEqualTo("MaNH", maNhaHang).get()
