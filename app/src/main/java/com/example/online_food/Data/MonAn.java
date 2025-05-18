@@ -1,8 +1,11 @@
 package com.example.online_food.Data;
 
+import com.example.online_food.Util.StringUtils;
+
 public class MonAn {
     private String MaMon,MaMenu;
     private String TenMon;
+    private String TenMonNonDiacritic; // Timkiem lowercase, nonDiacritic
     private boolean TrangThai;
     private double GiaMon;
     private boolean CheckComBo;
@@ -18,6 +21,7 @@ public class MonAn {
         MaMon = maMon;
         MaMenu = maMenu;
         TenMon = tenMon;
+        TenMonNonDiacritic = StringUtils.normalizeTK(TenMon);
         TrangThai = trangThai;
         GiaMon = giaMon;
         CheckComBo = checkComBo;
@@ -51,6 +55,17 @@ public class MonAn {
         TenMon = tenMon;
     }
 
+    public String getTenMonNonDiacritic() {
+        return TenMonNonDiacritic;
+    }
+
+    public void setTenMonNonDiacritic(String tenMonNonDiacritic) {
+        TenMonNonDiacritic = tenMonNonDiacritic;
+    }
+
+    public void setTenMonNonDiacritic() {
+        TenMonNonDiacritic = StringUtils.removeDiacritics(TenMon);
+    }
     public boolean isTrangThai() {
         return TrangThai;
     }
