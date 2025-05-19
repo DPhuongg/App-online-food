@@ -31,6 +31,9 @@
             android:name=".Activity.TaiKhoanActivity"
             android:exported="false" />
         <activity
+            android:name=".Activity.CTDonHangActivity"
+            android:exported="false" />
+        <activity
             android:name=".Activity.LichSuActivity"
             android:exported="false" />
         <activity

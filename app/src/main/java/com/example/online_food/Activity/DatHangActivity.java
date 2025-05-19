@@ -475,12 +475,12 @@ public class DatHangActivity extends AppCompatActivity {
                                                     double slb = monAn.getSoLuotBan();
 
                                                     doc.getReference()
-                                                            .update("SoLuongTon", slt - 1,
-                                                                    "SoLuotBan", slb + 1)
+                                                            .update("SoLuongTon", slt - items.getSoLuong(),
+                                                                    "SoLuotBan", slb + items.getSoLuong())
                                                             .addOnCompleteListener(new OnCompleteListener<Void>() {
                                                                 @Override
                                                                 public void onComplete(@NonNull Task<Void> task) {
-                                                                    if(slt - 1 == 0) {
+                                                                    if(slt - items.getSoLuong() == 0) {
                                                                         doc.getReference()
                                                                                 .update("TrangThai", false)
                                                                                 .addOnCompleteListener(new OnCompleteListener<Void>() {
