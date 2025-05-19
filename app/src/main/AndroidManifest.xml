@@ -39,6 +39,12 @@
         <activity
             android:name=".Activity.DonHangActivity"
             android:exported="false" />
+
+        <activity android:name=".Activity.TimkiemNhaHang"
+            android:exported="false" />
+        <activity android:name=".Activity.TimKiemMonAn"
+            android:exported="false" />
+
         <activity
             android:name=".Activity.DatHangActivity"
             android:exported="false" />
