@@ -22,6 +22,7 @@ import com.example.online_food.Data.DonHang;
 import com.example.online_food.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -39,6 +40,7 @@ public class CTDonHangActivity extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     ArrayList<ChiTietDonHang> lstDon;
     CTDonHangAdapter adapter;
+    Button btnXacNhanNH;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -60,6 +62,8 @@ public class CTDonHangActivity extends AppCompatActivity {
         maDon = findViewById(R.id.MaDon);
         tgian = findViewById(R.id.TGianDH);
         soMon = findViewById(R.id.SoMon);
+        btnXacNhanNH = findViewById(R.id.btnNhanHang);
+
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         viewDonDat.setLayoutManager(layoutManager);
@@ -163,6 +167,15 @@ public class CTDonHangActivity extends AppCompatActivity {
                             for(DocumentSnapshot doc : snapshot){
                                 DonHang donHang = doc.toObject(DonHang.class);
 
+                                String trangThai = donHang.getTrangThai();
+                                String trangThaiShip = donHang.getTrangThaiShip();
+
+                                if("Chờ giao hàng".equals(trangThai) && "Hoàn thành".equals(trangThaiShip)){
+                                    btnXacNhanNH.setVisibility(View.VISIBLE);
+                                } else{
+                                    btnXacNhanNH.setVisibility(View.GONE);
+                                }
+
                                 NumberFormat format = NumberFormat.getNumberInstance(Locale.getDefault());
                                 String tTienformatted = format.format(donHang.getTongTien());
                                 String pvcformatted = format.format(donHang.getPhiShip());
@@ -178,6 +191,23 @@ public class CTDonHangActivity extends AppCompatActivity {
                                 thanhTien.setText(thanhTienformatted + " đ");
                                 tongTien.setText(tTienformatted + " đ");
                                 tgian.setText(donHang.getThoiGianDatHang());
+
+
+                                DocumentReference donHangRef = doc.getReference();
+
+                                btnXacNhanNH.setOnClickListener(v -> {
+                                    // Cập nhật trạng thái đơn hàng
+                                    donHangRef.update("TrangThai", "Đã giao")
+                                            .addOnSuccessListener(unused -> {
+                                                // Gọi lại DonHangActivity
+                                                Intent intent = new Intent(CTDonHangActivity.this, DonHangActivity.class);
+                                                startActivity(intent);
+                                                finish(); // Đóng Activity hiện tại
+                                            })
+                                            .addOnFailureListener(e -> {
+                                                Toast.makeText(CTDonHangActivity.this, "Cập nhật thất bại: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                            });
+                                });
                             }
                         }
                     }
